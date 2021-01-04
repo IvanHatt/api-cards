@@ -52,5 +52,4 @@ function joiValidateUser(user) {
 }
 
 exports.User = User;
-exports.validateUser = joiValidateUser;
- 
+exports.joiValidateUser = joiValidateUser;
