@@ -1,0 +1,12 @@
+@local = http://localhost:3000 
+
+### Create users
+POST {{local}}/api/users
+Content-Type: application/json
+
+{
+    "name": "Ivan Hattemer",
+    "email": "ivan@hotmail.com",
+    "password": "123456",
+    "biz": true
+}
