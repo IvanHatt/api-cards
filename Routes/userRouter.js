@@ -3,6 +3,12 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const { User, joiValidateUser } = require("../models/userModel");
+const { authMiddleware } = require("../middleware/authMiddleware");
+
+router.get("/me", authMiddleware, async (req, res) => {
+  const user = await User.findById(req.user._id).select("-password"); //exclude password from query
+  res.send(user);
+});
 
 router.post("/", async (req, res) => {
   const { error } = joiValidateUser(req.body);
