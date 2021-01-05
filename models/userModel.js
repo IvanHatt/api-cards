@@ -1,6 +1,8 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const jwt = require("jsonwebtoken");
+const config = require("config");
 
 //define Mongoose Schema
 const userSchema = new Schema({
@@ -33,6 +35,15 @@ const userSchema = new Schema({
     required: true,
   },
   createdAt: { type: Date, default: Date.now },
+});
+
+//mongoose create a new method, will be available on every instance of User
+userSchema.method("generateAuthToken", function () {
+  const token = jwt.sign(
+    { _id: this._id, prof: this.prof },
+    config.get("jwtKey")
+  );
+  return token;
 });
 
 //define mongoose model User from userSchema
