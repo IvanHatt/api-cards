@@ -6,8 +6,17 @@ Content-Type: application/json
 
 {
     "name": "Ivan Hattemer",
-    "email": "ivan@gmail.com",
-    "password": "045844587",
+    "email": "ivanka@gmail.com",
+    "password": "12345678",
     "phone": "0544774126",
     "prof": true
+}
+
+### Signin
+POST {{local}}/api/auth
+Content-Type: application/json
+
+{
+    "email": "ivanka@gmail.com",
+    "password": "12345678"
 }

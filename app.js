@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const userRouter = require("./Routes/userRouter");
+const userRouter = require("./routes/userRouter");
+const authRouter = require("./routes/authRouter");
 const app = express();
 const PORT = 3000;
 
@@ -15,6 +16,7 @@ mongoose
 app.use(express.json());
 
 app.use("/api/users", userRouter);
+app.use("/api/auth", authRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT} `);
