@@ -24,7 +24,7 @@ const userSchema = new Schema({
     maxlength: 1024,
   },
   phone: {
-    type: Number,
+    type: String,
     minlength: 10,
     maxlength: 20,
   },
@@ -44,7 +44,7 @@ function joiValidateUser(user) {
     name: Joi.string().min(2).max(255).required(),
     email: Joi.string().min(6).max(255).required().email(),
     password: Joi.string().min(6).max(1024).required(),
-    phone: Joi.number().min(10).max(20),
+    phone: Joi.string().min(10).max(20),
     prof: Joi.boolean().required(),
   });
 
