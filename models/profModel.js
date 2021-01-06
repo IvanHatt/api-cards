@@ -1,6 +1,7 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const { User } = require("../models/userModel");
 
 const profSchema = new Schema({
   profName: {
@@ -45,12 +46,14 @@ const profSchema = new Schema({
     minlength: 11,
     maxlength: 1024,
   },
-  profKeywords: {
-    type: String,
-    required: true,
-    minlength: 2,
-    maxlength: 255,
-  },
+  profKeywords: [
+    {
+      type: String,
+      required: true,
+      minlength: 2,
+      maxlength: 20,
+    },
+  ],
   profPrice: {
     type: String,
     required: true,
@@ -63,6 +66,10 @@ const profSchema = new Schema({
     minlength: 3,
     maxlength: 99999999999,
     unique: true,
+  },
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: User, //ver si funciona(si no, hacerlo como en el libro)
   },
 });
 
@@ -77,7 +84,7 @@ function joiValidateProf(prof) {
     profEmail: Joi.string().min(6).max(255).required().email(),
     profPhone: Joi.string().min(9).max(15).required(),
     profImage: Joi.string().min(11).max(1024).required(),
-    profKeywords: Joi.string().min(2).max(255).required(),
+    profKeywords: Joi.array().items(Joi.string().min(2).max(20)).required(),
     profPrice: Joi.string().min(1).max(4).required(),
   });
   return schema.validate(prof);
