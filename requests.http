@@ -27,18 +27,23 @@ GET {{local}}/api/users/me
 Content-Type: application/json
 x-auth-token: {{token}}
 
-### Prof Router
+### Create Prof 
 POST {{local}}/api/profs
 Content-Type: application/json
 x-auth-token: {{token}}
 
 {
   "profName": "Ivan Hatt",
-  "profTitle": "Math teacher",
+  "profTitle": "Chemistry teacher",
   "profEducation": "UNR",
-  "profDescription": "math lessons",
+  "profDescription": "chem lessons",
   "profEmail": "ivan@de.de",
-  "profPhone": "04-4444444",
-  "profKeywords": ["math", "algebra"],
+  "profPhone": "044444444",
+  "profKeywords": ["chem", "algebra"],
   "profPrice": "150"
 }
+
+### Get prof endpoint
+GET {{local}}/api/profs/334953
+Content-Type: application/json
+x-auth-token: {{token}}
