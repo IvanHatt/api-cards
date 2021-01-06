@@ -1,4 +1,5 @@
 @local = http://localhost:3000 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmY0MzkzODFkN2E2YTE3ZmM3NTFmOWMiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MDk5MjcxMzd9.e6kYGXQNSIQCjGqraTKLTZiADaNRRfFmtVVr6OhkXaw
 
 ### Create users
 POST {{local}}/api/users
@@ -24,5 +25,20 @@ Content-Type: application/json
 ### Me endpoint
 GET {{local}}/api/users/me
 Content-Type: application/json
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmY0MzkzODFkN2E2YTE3ZmM3NTFmOWMiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MDk4NTE1OTZ9.w60wVdOBM_rjPVlL-1icFeT6frUOo0lFrDFldp-oPwk
+x-auth-token: {{token}}
 
+### Prof Router
+POST {{local}}/api/profs
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+  "profName": "Ivan Hatt",
+  "profTitle": "Math teacher",
+  "profEducation": "UNR",
+  "profDescription": "math lessons",
+  "profEmail": "ivan@de.de",
+  "profPhone": "04-4444444",
+  "profKeywords": ["math", "algebra"],
+  "profPrice": "150"
+}
