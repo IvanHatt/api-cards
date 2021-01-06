@@ -29,6 +29,9 @@ const userSchema = new Schema({
     type: Boolean,
     required: true,
   },
+  favoriteProfs: {
+    type: Array,
+  },
   createdAt: { type: Date, default: Date.now },
 });
 
@@ -67,6 +70,15 @@ function joiValidateAuth(req) {
   return schema.validate(req);
 }
 
+//validation for favorite prof
+function joiValidateFavProf(data) {
+  const schema = Joi.object({
+    favoriteProfs: Joi.array().min(1).required(),
+  });
+  return schema.validate(data);
+}
+
 exports.User = User;
 exports.joiValidateUser = joiValidateUser;
 exports.joiValidateAuth = joiValidateAuth;
+exports.joiValidateFavProf = joiValidateFavProf;

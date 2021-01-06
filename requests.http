@@ -27,6 +27,12 @@ GET {{local}}/api/users/me
 Content-Type: application/json
 x-auth-token: {{token}}
 
+### Get favorites endpoint
+GET {{local}}/api/users/profs?numbers=151719,64812
+Content-Type: application/json
+x-auth-token: {{token}}
+
+
 ### Create Prof 
 POST {{local}}/api/profs
 Content-Type: application/json
@@ -34,7 +40,7 @@ x-auth-token: {{token}}
 
 {
   "profName": "Ivan Hatt",
-  "profTitle": "Chemistry teacher",
+  "profTitle": "spanish teacher",
   "profEducation": "UNR",
   "profDescription": "chem lessons",
   "profEmail": "ivan@de.de",
