@@ -43,7 +43,28 @@ x-auth-token: {{token}}
   "profPrice": "150"
 }
 
-### Get prof endpoint
-GET {{local}}/api/profs/334953
+### Update Prof by id
+PUT {{local}}/api/profs/834577
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+  "profName": "Ivan Hatt",
+  "profTitle": "Spanish teacher",
+  "profEducation": "Cervantes",
+  "profDescription": "spanish lessons",
+  "profEmail": "ivan@gmail.de",
+  "profPhone": "054411223",
+  "profKeywords": ["spanish", "languages"],
+  "profPrice": "150"
+}
+
+### Get prof by id
+GET {{local}}/api/profs/834577
+Content-Type: application/json
+x-auth-token: {{token}}
+
+### Delete prof by id
+DELETE {{local}}/api/profs/834577
 Content-Type: application/json
 x-auth-token: {{token}}
