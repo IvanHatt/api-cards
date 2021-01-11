@@ -6,11 +6,17 @@ const config = require("config");
 
 //define Mongoose Schema
 const userSchema = new Schema({
-  name: {
+  firstName: {
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 255,
+    maxlength: 50,
+  },
+  lastName: {
+    type: String,
+    required: true,
+    minlength: 2,
+    maxlength: 50,
   },
   email: {
     type: String,
@@ -50,7 +56,8 @@ const User = mongoose.model("User", userSchema);
 //validation with Joi for registration (used in userRouter)
 function joiValidateUser(user) {
   const schema = Joi.object({
-    name: Joi.string().min(2).max(255).required(),
+    firstName: Joi.string().min(2).max(50).required(),
+    lastName: Joi.string().min(2).max(50).required(),
     email: Joi.string().min(6).max(255).required().email(),
     password: Joi.string().min(6).max(1024).required(),
     prof: Joi.boolean().required(),

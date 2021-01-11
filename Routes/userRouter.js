@@ -57,17 +57,17 @@ router.post("/", async (req, res) => {
   if (userExists) return res.status(400).send("User already registered");
 
   let dataUser = _.pick(req.body, [
-    "name",
+    "firstName",
+    "lastName",
     "email",
     "password",
-    "phone",
     "prof",
     "cards",
   ]);
   let user = new User(dataUser);
   user.password = await bcrypt.hash(user.password, 10);
   await user.save();
-  res.send(_.pick(user, ["_id", "name", "email"]));
+  res.send(_.pick(user, ["_id", "firstName", "email"]));
 });
 
 module.exports = router;
