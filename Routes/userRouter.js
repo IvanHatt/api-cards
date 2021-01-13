@@ -62,7 +62,7 @@ router.post("/", async (req, res) => {
     "email",
     "password",
     "prof",
-    "cards",
+    "favoriteProfs",
   ]);
   let user = new User(dataUser);
   user.password = await bcrypt.hash(user.password, 10);

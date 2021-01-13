@@ -1,4 +1,4 @@
-@local = http://localhost:3000 
+@local = http://localhost:3010 
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmY0MzkzODFkN2E2YTE3ZmM3NTFmOWMiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MDk5MjcxMzd9.e6kYGXQNSIQCjGqraTKLTZiADaNRRfFmtVVr6OhkXaw
 
 ### Create users
@@ -6,10 +6,10 @@ POST {{local}}/api/users
 Content-Type: application/json
 
 {
-    "name": "Ivan Hattemer",
-    "email": "ivanka@gmail.com",
+    "firstName": "Sebastian",
+    "lastName": "Hattemer",
+    "email": "sebi@gmail.com",
     "password": "12345678",
-    "phone": "0544774126",
     "prof": true
 }
 
