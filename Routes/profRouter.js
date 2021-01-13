@@ -64,7 +64,6 @@ router.post("/", authMiddleware, async (req, res) => {
     profEmail: req.body.profEmail,
     profPhone: req.body.profPhone,
     profImage: req.body.profImage ? req.body.profImage : avatarImg,
-    profKeywords: req.body.profKeywords,
     profPrice: req.body.profPrice,
     profId: await generateProfId(Prof),
     user_id: req.user._id,
