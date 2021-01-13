@@ -82,7 +82,7 @@ function joiValidateProf(prof) {
       .max(15)
       .required()
       .regex(/^0[2-9]\d{7,8}$/),
-    profImage: Joi.string().min(11).max(1024).uri().allow(),
+    profImage: Joi.string().min(11).max(1024).uri().allow(null),
     profPrice: Joi.string().min(1).max(4).required(),
   });
   return schema.validate(prof);
