@@ -9,6 +9,13 @@ const {
 } = require("../models/profModel");
 const { authMiddleware } = require("../middleware/authMiddleware");
 
+//get all cards for profs
+router.get("/my-profs", authMiddleware, async (req, res) => {
+  if (!req.user.prof) return res.status(401).send("Acces Denied");
+  const profs = await Prof.find({ user_id: req.user._id });
+  res.send(profs);
+});
+
 //delete a prof post
 router.delete("/:id", authMiddleware, async (req, res) => {
   const prof = await Prof.findOneAndRemove({

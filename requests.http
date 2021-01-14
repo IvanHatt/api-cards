@@ -1,5 +1,5 @@
 @local = http://localhost:3010 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmY0MzkzODFkN2E2YTE3ZmM3NTFmOWMiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MDk5MjcxMzd9.e6kYGXQNSIQCjGqraTKLTZiADaNRRfFmtVVr6OhkXaw
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDAwMTZmYjgzZDcyMTE2YjQyMmEzYWIiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTA2MTg2OTh9.joRSK5Zvp7dpedgUZOG0qaJc2LLhxPiLXjdpVinJdAs
 
 ### Create users
 POST {{local}}/api/users
@@ -18,7 +18,7 @@ POST {{local}}/api/auth
 Content-Type: application/json
 
 {
-    "email": "ivanka@gmail.com",
+    "email": "sebi@gmail.com",
     "password": "12345678"
 }
 
@@ -39,14 +39,13 @@ Content-Type: application/json
 x-auth-token: {{token}}
 
 {
-  "profName": "Ivan Hatt",
-  "profTitle": "spanish teacher",
+  "profName": "Sebastian Hattemer",
+  "profTitle": "Maths teacher",
   "profEducation": "UNR",
-  "profDescription": "chem lessons",
-  "profEmail": "ivan@de.de",
+  "profDescription": "Maths lessons",
+  "profEmail": "seba@de.de",
   "profPhone": "044444444",
-  "profKeywords": ["chem", "algebra"],
-  "profPrice": "150"
+  "profPrice": "200"
 }
 
 ### Update Prof by id
@@ -72,5 +71,10 @@ x-auth-token: {{token}}
 
 ### Delete prof by id
 DELETE {{local}}/api/profs/834577
+Content-Type: application/json
+x-auth-token: {{token}}
+
+### Get all profs by user id
+GET {{local}}/api/profs/my-profs
 Content-Type: application/json
 x-auth-token: {{token}}
