@@ -66,7 +66,6 @@ router.post("/", authMiddleware, async (req, res) => {
   let prof = new Prof({
     profName: req.body.profName,
     profTitle: req.body.profTitle,
-    profEducation: req.body.profEducation,
     profDescription: req.body.profDescription,
     profEmail: req.body.profEmail,
     profPhone: req.body.profPhone,
