@@ -1,14 +1,14 @@
 @local = http://localhost:3010 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDEyYzMzYzQ3YWYzNjFlMDBkYzdhZTEiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTE4NDIzNzZ9.pSfw-o0IlN3lw5pDLWe6i-XGdNnib1wEJIipvwWueZQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE0MjIxMjc4MjZkZjQ1OTg5ZjEzNWQiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTE5MzIxOTR9.Zf-dEenZ9-doA6x0YLT7pAwhA8ts1Eq1kBrfXJhOwek
 
 ### Create users
 POST {{local}}/api/users
 Content-Type: application/json
 
 {
-    "firstName": "Sebastian",
+    "firstName": "Marina",
     "lastName": "Hattemer",
-    "email": "sebi@gmail.com",
+    "email": "mari@gmail.com",
     "password": "12345678",
     "prof": true
 }
@@ -18,7 +18,7 @@ POST {{local}}/api/auth
 Content-Type: application/json
 
 {
-    "email": "sebi@gmail.com",
+    "email": "mari@gmail.com",
     "password": "12345678"
 }
 
@@ -39,14 +39,13 @@ Content-Type: application/json
 x-auth-token: {{token}}
 
 {
-  "profName": "Sebastian Hattemer",
-  "profTitle": "Physics teacher",
-  "profEducation": "UNR",
+  "profName": "Marina Hattemer",
+  "profTitle": "Literature teacher",
   "profDescription": "Physics lessons, This is a wider card with supporting text below as a natural lead-in to additional content, supporting text below as a natural ",
-  "profEmail": "seba@de.de",
+  "profEmail": "mari@de.de",
   "profPhone": "044444444",
   "profPrice": "150",
-  "profImage": "https://cdn.pixabay.com/photo/2021/01/21/16/44/model-5937809_960_720.jpg"
+  "profImage": "https://scontent.fsdv1-2.fna.fbcdn.net/v/t31.0-8/18920731_1054291061371251_3460332876391398025_o.jpg?_nc_cat=102&ccb=2&_nc_sid=cdbe9c&_nc_ohc=hJXqIxlnIqwAX-FPP9O&_nc_ht=scontent.fsdv1-2.fna&oh=5137d90b4b61b9ea02f0e4d93a5622ae&oe=603A1F53"
 }
 
 ### Update Prof by id
@@ -79,3 +78,9 @@ x-auth-token: {{token}}
 GET {{local}}/api/profs/my-profs
 Content-Type: application/json
 x-auth-token: {{token}}
+
+
+### Get all profs general
+
+GET {{local}}/api/profs/all-profs
+Content-Type: application/json
