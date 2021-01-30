@@ -40,11 +40,12 @@ x-auth-token: {{token}}
 
 {
   "profName": "Marina Hattemer",
-  "profTitle": "Literature teacher",
-  "profDescription": "Physics lessons, This is a wider card with supporting text below as a natural lead-in to additional content, supporting text below as a natural ",
+  "profTitle": "Biology teacher",
+  "profCity": "Ramat Gan",
+  "profDescription": "Biology, This is a wider card with supporting text below as a natural lead-in to additional content, supporting text below as a natural ",
   "profEmail": "mari@de.de",
   "profPhone": "044444444",
-  "profPrice": "150",
+  "profPrice": "200",
   "profImage": "https://scontent.fsdv1-2.fna.fbcdn.net/v/t31.0-8/18920731_1054291061371251_3460332876391398025_o.jpg?_nc_cat=102&ccb=2&_nc_sid=cdbe9c&_nc_ohc=hJXqIxlnIqwAX-FPP9O&_nc_ht=scontent.fsdv1-2.fna&oh=5137d90b4b61b9ea02f0e4d93a5622ae&oe=603A1F53"
 }
 

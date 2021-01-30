@@ -19,6 +19,12 @@ const profSchema = new Schema({
     minlength: 2,
     maxlength: 255,
   },
+  profCity: {
+    type: String,
+    required: true,
+    minlength: 2,
+    maxlength: 255,
+  },
   profDescription: {
     type: String,
     required: true,
@@ -68,6 +74,7 @@ function joiValidateProf(prof) {
   const schema = Joi.object({
     profName: Joi.string().min(2).max(255).required(),
     profTitle: Joi.string().min(2).max(255).required(),
+    profCity: Joi.string().min(2).max(255).required(),
     profDescription: Joi.string().min(2).max(1024).required(),
     profEmail: Joi.string().min(6).max(255).required().email(),
     profPhone: Joi.string()
