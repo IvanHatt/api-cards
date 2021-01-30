@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const { User } = require("../models/userModel");
 const _ = require("lodash");
+const config = require("config");
+
 const avatarImg =
   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
@@ -73,8 +75,16 @@ const Prof = mongoose.model("Prof", profSchema);
 function joiValidateProf(prof) {
   const schema = Joi.object({
     profName: Joi.string().min(2).max(255).required(),
-    profTitle: Joi.string().min(2).max(255).required(),
-    profCity: Joi.string().min(2).max(255).required(),
+    profTitle: Joi.string()
+      .valid(...config.get("categories"))
+      .min(2)
+      .max(255)
+      .required(),
+    profCity: Joi.string()
+      .valid(...config.get("cities"))
+      .min(2)
+      .max(255)
+      .required(),
     profDescription: Joi.string().min(2).max(1024).required(),
     profEmail: Joi.string().min(6).max(255).required().email(),
     profPhone: Joi.string()
