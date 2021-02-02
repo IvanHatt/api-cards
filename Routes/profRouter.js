@@ -15,7 +15,7 @@ router.get("/all-profs", async (req, res) => {
   res.send(allProfs);
 });
 
-//get all cards for my profs
+//get my profs , only the owner
 router.get("/my-profs", authMiddleware, async (req, res) => {
   if (!req.user.prof) return res.status(401).send("Acces Denied");
   const profs = await Prof.find({ user_id: req.user._id });
@@ -82,8 +82,8 @@ router.post("/", authMiddleware, async (req, res) => {
     user_id: req.user._id,
   });
 
-  let profToDb = await prof.save();
-  res.send("Saved" + prof);
+  await prof.save();
+  res.send("Saved");
 });
 
 module.exports = router;

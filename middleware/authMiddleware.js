@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 
 /// if token ok, passes the info in token to the next handler
+/// token contains user _id and prof(bool)
 function authMiddleware(req, res, next) {
   const token = req.header("x-auth-token");
   if (!token) return res.status(401).send("Acces Denied. No Token");

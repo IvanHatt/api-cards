@@ -10,13 +10,27 @@ const {
 const { authMiddleware } = require("../middleware/authMiddleware");
 const { Prof, joiValidateProf } = require("../models/profModel");
 
+///add profId to myfavorites
+router.put("/:profId", authMiddleware, async (req, res) => {
+  let updateFav = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $push: { favoriteProfs: req.params.profId } }
+  );
+  if (!updateFav)
+    return res.status(404).send("The post with the given Id was not found");
+
+  updateFav = await User.findOne({ _id: req.user._id });
+
+  res.send(updateFav);
+});
+
 //
 const getFavoriteProfs = async (favProfsArray) => {
   const favProfs = await Prof.find({ profId: { $in: favProfsArray } });
   return favProfs;
 };
 
-// get an array of prof by profId passed as ?numbers in the query
+// get an array of prof by profId passed as numbers in the query
 router.get("/profs", authMiddleware, async (req, res) => {
   if (!req.query.numbers) res.status(400).send("Missing numbers data");
 

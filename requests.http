@@ -1,5 +1,5 @@
 @local = http://localhost:3010 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDEyYzMzYzQ3YWYzNjFlMDBkYzdhZTEiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTIwMDM0NDJ9.ZzrJYFLF1O5bzqfvTPCC2ZN2gOj3oHkE1CZG9ptR_YQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDEyYzMzYzQ3YWYzNjFlMDBkYzdhZTEiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTIyNzQ3MTJ9.A2i-GTm2w9pM_NWY9NuqQ-U9epI2WsrtjSaXyC-L4Ds
 
 ### Create users
 POST {{local}}/api/users
@@ -32,6 +32,11 @@ GET {{local}}/api/users/profs?numbers=151719,64812
 Content-Type: application/json
 x-auth-token: {{token}}
 
+### Add favorite by id prof
+PUT {{local}}/api/users/803442
+Content-Type: application/json
+x-auth-token: {{token}}
+
 
 ### Create Prof 
 POST {{local}}/api/profs
@@ -40,8 +45,8 @@ x-auth-token: {{token}}
 
 {
   "profName": "Sebi Hattemer",
-  "profTitle": "German teacher",
-  "profCity": "Paris",
+  "profTitle": "German",
+  "profCity": "Ashdod",
   "profDescription": "Biology, This is a wider card with supporting text below as a natural lead-in to additional content, supporting text below as a natural ",
   "profEmail": "mari@de.de",
   "profPhone": "044444444",
