@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const _ = require("lodash");
+const { User } = require("../models/userModel");
 const {
   Prof,
   joiValidateProf,
@@ -20,6 +21,16 @@ router.get("/my-profs", authMiddleware, async (req, res) => {
   if (!req.user.prof) return res.status(401).send("Acces Denied");
   const profs = await Prof.find({ user_id: req.user._id });
   res.send(profs);
+});
+
+//get favorites, the owner
+router.get("/myfav-profs", authMiddleware, async (req, res) => {
+  let myFavs = await User.findById(req.user._id, "favoriteProfs");
+  if (myFavs && myFavs.favoriteProfs.length > 0) {
+    const favProfs = await Prof.find({ profId: { $in: myFavs.favoriteProfs } });
+    res.send(favProfs);
+  }
+  res.status(404).send("No favorites found");
 });
 
 //delete a prof post
@@ -42,25 +53,13 @@ router.put("/:id", authMiddleware, async (req, res) => {
     { profId: req.params.id, user_id: req.user._id },
     req.body
   );
-  if (!prof)
-    return res.status(404).send("The post with the given Id was not found");
+  if (!prof) return res.status(404).send("Unauthorized");
 
   prof = await Prof.findOne({
     profId: req.params.id,
     user_id: req.user._id,
   });
 
-  res.send(prof);
-});
-
-// get a specific prof post by profId
-router.get("/:id", authMiddleware, async (req, res) => {
-  const prof = await Prof.findOne({
-    profId: req.params.id,
-    user_id: req.user._id,
-  });
-  if (!prof)
-    return res.status(404).send("The Post with the given ID was not found.");
   res.send(prof);
 });
 
@@ -84,6 +83,17 @@ router.post("/", authMiddleware, async (req, res) => {
 
   await prof.save();
   res.send("Saved");
+});
+
+// get a specific prof post by profId
+router.get("/:id", authMiddleware, async (req, res) => {
+  const prof = await Prof.findOne({
+    profId: req.params.id,
+    user_id: req.user._id,
+  });
+  if (!prof)
+    return res.status(404).send("The Post with the given ID was not found");
+  res.send(prof);
 });
 
 module.exports = router;

@@ -79,9 +79,7 @@ function joiValidateAuth(req) {
 
 //validation for favorite prof
 function joiValidateFavProf(data) {
-  const schema = Joi.object({
-    favoriteProfs: Joi.array().min(1).required(),
-  });
+  const schema = Joi.number().min(1000).max(999999).required();
   return schema.validate(data);
 }
 

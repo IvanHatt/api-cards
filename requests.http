@@ -1,5 +1,5 @@
 @local = http://localhost:3010 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDEyYzEyMTQ3YWYzNjFlMDBkYzdhZTAiLCJwcm9mIjpmYWxzZSwiaWF0IjoxNjEyMzQyODk1fQ.6_qD-nFl4uupoft867bt5k4_ugp0tXOCJaOJNIu2HKQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE0MjIxMjc4MjZkZjQ1OTg5ZjEzNWQiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTIzNDc0Nzl9.yZWclSl7TKqQnSAMUipK-gmK6P9_-EIouI6oCzHptaE
 
 ### Create users
 POST {{local}}/api/users
@@ -18,7 +18,7 @@ POST {{local}}/api/auth
 Content-Type: application/json
 
 {
-    "email": "ivan@gmail.com",
+    "email": "mari@gmail.com",
     "password": "12345678"
 }
 
@@ -27,13 +27,19 @@ GET {{local}}/api/users/me
 Content-Type: application/json
 x-auth-token: {{token}}
 
-### Get favorites endpoint
-GET {{local}}/api/users/profs?numbers=151719,64812
+### Get favorites array
+GET {{local}}/api/users/myfavs
 Content-Type: application/json
 x-auth-token: {{token}}
 
+### Get favorite profs cards
+GET {{local}}/api/profs/myfav-profs
+Content-Type: application/json
+x-auth-token: {{token}}
+
+
 ### Add favorite by id prof
-PUT {{local}}/api/users/803442
+PUT {{local}}/api/users/80412
 Content-Type: application/json
 x-auth-token: {{token}}
 
@@ -71,12 +77,12 @@ x-auth-token: {{token}}
 }
 
 ### Get prof by id
-GET {{local}}/api/profs/834577
+GET {{local}}/api/profs/377099
 Content-Type: application/json
 x-auth-token: {{token}}
 
 ### Delete prof by id
-DELETE {{local}}/api/profs/136180
+DELETE {{local}}/api/profs/377099
 Content-Type: application/json
 x-auth-token: {{token}}
 
