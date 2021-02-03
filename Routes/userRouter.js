@@ -10,8 +10,13 @@ const {
 const { authMiddleware } = require("../middleware/authMiddleware");
 const { Prof, joiValidateProf } = require("../models/profModel");
 
-///add profId to myfavorites
+///add profId to myfavorites array
 router.put("/:profId", authMiddleware, async (req, res) => {
+  let myFavs = await User.findById(req.user._id, "favoriteProfs");
+
+  if (myFavs.favoriteProfs.includes(req.params.profId))
+    return res.status(404).send("Already a favorite!");
+
   let updateFav = await User.findOneAndUpdate(
     { _id: req.user._id },
     { $push: { favoriteProfs: req.params.profId } }
@@ -19,9 +24,9 @@ router.put("/:profId", authMiddleware, async (req, res) => {
   if (!updateFav)
     return res.status(404).send("The post with the given Id was not found");
 
-  updateFav = await User.findOne({ _id: req.user._id });
+  updateFav = await User.findById(req.user._id);
 
-  res.send(updateFav);
+  res.send('Added!');
 });
 
 //

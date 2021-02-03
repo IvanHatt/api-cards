@@ -1,5 +1,5 @@
 @local = http://localhost:3010 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDEyYzMzYzQ3YWYzNjFlMDBkYzdhZTEiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTIyNzQ3MTJ9.A2i-GTm2w9pM_NWY9NuqQ-U9epI2WsrtjSaXyC-L4Ds
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDEyYzEyMTQ3YWYzNjFlMDBkYzdhZTAiLCJwcm9mIjpmYWxzZSwiaWF0IjoxNjEyMzQyODk1fQ.6_qD-nFl4uupoft867bt5k4_ugp0tXOCJaOJNIu2HKQ
 
 ### Create users
 POST {{local}}/api/users
@@ -18,7 +18,7 @@ POST {{local}}/api/auth
 Content-Type: application/json
 
 {
-    "email": "sebi@gmail.com",
+    "email": "ivan@gmail.com",
     "password": "12345678"
 }
 
