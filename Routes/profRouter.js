@@ -39,8 +39,7 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     profId: req.params.id,
     user_id: req.user._id,
   });
-  if (!prof)
-    return res.status(404).send("The post with the given Id was not found");
+  if (!prof) return res.status(401).send("Unauthorized!");
   res.send("Post succesfully deleted!");
 });
 
