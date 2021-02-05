@@ -27,10 +27,6 @@ GET {{local}}/api/users/me
 Content-Type: application/json
 x-auth-token: {{token}}
 
-### Get favorites array
-GET {{local}}/api/users/myfavs
-Content-Type: application/json
-x-auth-token: {{token}}
 
 ### Get favorite profs cards
 GET {{local}}/api/profs/myfav-profs
@@ -39,7 +35,12 @@ x-auth-token: {{token}}
 
 
 ### Add favorite by id prof
-PUT {{local}}/api/users/80412
+PUT {{local}}/api/users/add-fav/631193
+Content-Type: application/json
+x-auth-token: {{token}}
+
+### Remove favorite by id prof
+PUT {{local}}/api/users/delete-fav/631193
 Content-Type: application/json
 x-auth-token: {{token}}
 
@@ -77,12 +78,12 @@ x-auth-token: {{token}}
 }
 
 ### Get prof by id (only owner)
-GET {{local}}/api/profs/128759
+GET {{local}}/api/profs/947341
 Content-Type: application/json
 x-auth-token: {{token}}
 
 ### Delete prof by id
-DELETE {{local}}/api/profs/803441
+DELETE {{local}}/api/profs/631193
 Content-Type: application/json
 x-auth-token: {{token}}
 

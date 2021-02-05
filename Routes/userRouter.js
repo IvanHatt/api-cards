@@ -10,7 +10,7 @@ const {
 const { authMiddleware } = require("../middleware/authMiddleware");
 
 ///add profId to myfavorites array
-router.put("/:profId", authMiddleware, async (req, res) => {
+router.put("/add-fav/:profId", authMiddleware, async (req, res) => {
   const { error } = joiValidateFavProf(req.params.profId);
   if (error) return res.status(400).send(error.details[0].message);
   let myFavs = await User.findById(req.user._id, "favoriteProfs");
@@ -26,6 +26,25 @@ router.put("/:profId", authMiddleware, async (req, res) => {
   updateFav = await User.findById(req.user._id);
 
   res.send("Added!");
+});
+
+///remove profId from myfavorites array
+router.put("/delete-fav/:profId", authMiddleware, async (req, res) => {
+  const { error } = joiValidateFavProf(req.params.profId);
+  if (error) return res.status(400).send(error.details[0].message);
+  let myFavs = await User.findById(req.user._id, "favoriteProfs");
+  if (myFavs && !myFavs.favoriteProfs.includes(req.params.profId))
+    return res.status(404).send("Not a favorite!");
+
+  let updateFav = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $pull: { favoriteProfs: req.params.profId } }
+  );
+  if (!updateFav) return res.status(404).send("Unauthorized");
+
+  updateFav = await User.findById(req.user._id);
+
+  res.send("Deleted!");
 });
 
 //registration
@@ -53,21 +72,6 @@ router.post("/", async (req, res) => {
 // get data about the user itself
 router.get("/me", authMiddleware, async (req, res) => {
   const user = await User.findById(req.user._id).select("-password"); //exclude password from query
-  res.send(user);
-});
-
-//add prof to favorites
-router.patch("/profs", authMiddleware, async (req, res) => {
-  const { error } = joiValidateFavProf(req.body);
-  if (error) res.status(400).send(error.details[0].message);
-
-  const favoriteProfs = await getFavoriteProfs(req.body.favoriteProfs);
-  if (favoriteProfs.length != req.body.favoriteProfs.length)
-    res.status(400).send("Post numbers don't match");
-
-  let user = await User.findById(req.user._id);
-  user.favoriteProfs = req.body.favoriteProfs;
-  user = await user.save();
   res.send(user);
 });
 
