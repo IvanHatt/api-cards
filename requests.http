@@ -1,5 +1,5 @@
 @local = http://localhost:3010 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDFiZTVlYmEyZjMxMzJhNTRmMTlhZDciLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTI0NDEwOTN9.Qzrz1N6WfQHYjDWvHJxRglKYuHAjf-SGGGi_lbkhOtM
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE0MjIxMjc4MjZkZjQ1OTg5ZjEzNWQiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTI1MjQ0MDJ9.e43ooK1bZIEYHijI3zt1dwYSXREY_gaIkVnO0KIOJx8
 
 ### Create users
 POST {{local}}/api/users
@@ -51,38 +51,38 @@ x-auth-token: {{token}}
 
 {
   "profName": "Marina Hatt",
-  "profTitle": "Biology",
+  "profTitle": "Music",
   "profCity": "Holon",
-  "profDescription": "Chemistry, This is a wider card with supporting text below as a natural lead-in to additional content, supporting text below as a natural ",
+  "profDescription": "Music, This is a wider card with supporting text below as a natural lead-in to additional content, supporting text below as a natural ",
   "profEmail": "mari@de.de",
   "profPhone": "0221441233",
-  "profPrice": "300",
+  "profPrice": "180",
   "profImage": "https://scontent.fsdv1-2.fna.fbcdn.net/v/t31.0-8/18920731_1054291061371251_3460332876391398025_o.jpg?_nc_cat=102&ccb=2&_nc_sid=cdbe9c&_nc_ohc=tsVe-To81KwAX-r6dtI&_nc_ht=scontent.fsdv1-2.fna&oh=216280210ad345f68aa3c616a60119d9&oe=60420853"
 }
 
 ### Update Prof by id
-PUT {{local}}/api/profs/834577
+PUT {{local}}/api/profs/128759
 Content-Type: application/json
 x-auth-token: {{token}}
 
 {
-  "profName": "Sebi Hatt",
-  "profTitle": "Spanish teacher",
-  "profEducation": "Cervantes", 
-  "profDescription": "spanish lessons",
-  "profEmail": "ivan@gmail.de",
-  "profPhone": "054411223",
-  "profKeywords": ["spanish", "languages"],
-  "profPrice": "150"
+  "profName": "Marina Hattemer",
+  "profTitle": "Music",
+  "profCity": "Yokneam",
+  "profDescription": "Music, This is a wider card with supporting text below as a natural lead-in to additional content, supporting text below as a natural ",
+  "profEmail": "mari@de.de",
+  "profPhone": "0221441233",
+  "profPrice": "200",
+  "profImage": "https://scontent.fsdv1-2.fna.fbcdn.net/v/t31.0-8/18920731_1054291061371251_3460332876391398025_o.jpg?_nc_cat=102&ccb=2&_nc_sid=cdbe9c&_nc_ohc=tsVe-To81KwAX-r6dtI&_nc_ht=scontent.fsdv1-2.fna&oh=216280210ad345f68aa3c616a60119d9&oe=60420853"
 }
 
-### Get prof by id
-GET {{local}}/api/profs/377099
+### Get prof by id (only owner)
+GET {{local}}/api/profs/128759
 Content-Type: application/json
 x-auth-token: {{token}}
 
 ### Delete prof by id
-DELETE {{local}}/api/profs/658221
+DELETE {{local}}/api/profs/803441
 Content-Type: application/json
 x-auth-token: {{token}}
 

@@ -43,7 +43,7 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   res.send("Post succesfully deleted!");
 });
 
-// update a prof post
+// update (edit) a prof post
 router.put("/:id", authMiddleware, async (req, res) => {
   const { error } = joiValidateProf(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -59,7 +59,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
     user_id: req.user._id,
   });
 
-  res.send(prof);
+  res.send("Succesfully updated");
 });
 
 // create a prof posting
@@ -84,14 +84,13 @@ router.post("/", authMiddleware, async (req, res) => {
   res.send("Saved");
 });
 
-// get a specific prof post by profId
+// get a specific prof post by profId (only thw owner!)
 router.get("/:id", authMiddleware, async (req, res) => {
   const prof = await Prof.findOne({
     profId: req.params.id,
     user_id: req.user._id,
   });
-  if (!prof)
-    return res.status(404).send("The Post with the given ID was not found");
+  if (!prof) return res.status(404).send("Card not found between your cards!");
   res.send(prof);
 });
 
