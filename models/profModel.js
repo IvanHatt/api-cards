@@ -45,12 +45,7 @@ const profSchema = new Schema({
     minlength: 9,
     maxlength: 15,
   },
-  profImage: {
-    type: String,
-    required: true,
-    minlength: 11,
-    maxlength: 1024,
-  },
+  profImage: { data: Buffer, contentType: String },
   profPrice: {
     type: String,
     required: true,

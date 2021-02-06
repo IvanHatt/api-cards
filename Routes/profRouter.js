@@ -27,8 +27,10 @@ router.get("/my-profs", authMiddleware, async (req, res) => {
 router.get("/myfav-profs", authMiddleware, async (req, res) => {
   let myFavs = await User.findById(req.user._id, "favoriteProfs");
   if (myFavs && myFavs.favoriteProfs.length > 0) {
-    const favProfs = await Prof.find({ profId: { $in: myFavs.favoriteProfs } });
-    res.send(favProfs);
+    const favProfs = await Prof.find({
+      profId: { $in: myFavs.favoriteProfs },
+    });
+    return res.send(favProfs);
   }
   res.status(404).send("No favorites found");
 });
@@ -82,6 +84,11 @@ router.post("/", authMiddleware, async (req, res) => {
 
   await prof.save();
   res.send("Saved");
+});
+
+//post Test
+router.post("/test", authMiddleware, async (req, res) => {
+  console.log(req.body);
 });
 
 // get a specific prof post by profId (only thw owner!)
