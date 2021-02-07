@@ -9,6 +9,7 @@ const {
   avatarImg,
 } = require("../models/profModel");
 const { authMiddleware } = require("../middleware/authMiddleware");
+const { upload } = require("../helper/upload-config");
 
 //get all profs, even if not connected
 router.get("/all-profs", async (req, res) => {
@@ -65,31 +66,48 @@ router.put("/:id", authMiddleware, async (req, res) => {
 });
 
 // create a prof posting
-router.post("/", authMiddleware, async (req, res) => {
-  const { error } = joiValidateProf(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+router.post(
+  "/",
+  authMiddleware,
+  upload.single("profImage"),
+  async (req, res) => {
+    const { error } = joiValidateProf(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+    try {
+      let prof = {
+        profName: req.body.profName,
+        profTitle: req.body.profTitle,
+        profCity: req.body.profCity,
+        profDescription: req.body.profDescription,
+        profEmail: req.body.profEmail,
+        profPhone: req.body.profPhone,
+        profImage: avatarImg,
+        profPrice: req.body.profPrice,
+        profId: await generateProfId(Prof),
+        user_id: req.user._id,
+      };
+      if (req.file) {
+        prof.profImage = req.file.path;
+      }
 
-  let prof = new Prof({
-    profName: req.body.profName,
-    profTitle: req.body.profTitle,
-    profCity: req.body.profCity,
-    profDescription: req.body.profDescription,
-    profEmail: req.body.profEmail,
-    profPhone: req.body.profPhone,
-    profImage: req.body.profImage ? req.body.profImage : avatarImg,
-    profPrice: req.body.profPrice,
-    profId: await generateProfId(Prof),
-    user_id: req.user._id,
-  });
+      let profToDB = new Prof(prof);
+      await profToDB.save();
+      res.send("Saved");
+    } catch (error) {
+      res.status(500).send("Error");
+    }
 
-  await prof.save();
-  res.send("Saved");
-});
+    // image available at : `http://localhost:3010/api/profs/${prof.profImage}`
+  }
+);
 
 //post Test
 router.post("/test", authMiddleware, async (req, res) => {
   console.log(req.body);
 });
+
+// //render image endpoint
+// router.get("/images/:pic");
 
 // get a specific prof post by profId (only thw owner!)
 router.get("/:id", authMiddleware, async (req, res) => {
