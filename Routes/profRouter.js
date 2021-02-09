@@ -101,14 +101,6 @@ router.post(
   }
 );
 
-//post Test
-router.post("/test", authMiddleware, async (req, res) => {
-  console.log(req.body);
-});
-
-// //render image endpoint
-// router.get("/images/:pic");
-
 // get a specific prof post by profId (only thw owner!)
 router.get("/:id", authMiddleware, async (req, res) => {
   const prof = await Prof.findOne({
