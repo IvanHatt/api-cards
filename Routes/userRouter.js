@@ -51,7 +51,7 @@ router.put("/delete-fav/:profId", authMiddleware, async (req, res) => {
 router.post("/", async (req, res) => {
   const { error } = joiValidateUser(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-
+ 
   let userExists = await User.findOne({ email: req.body.email });
   if (userExists) return res.status(400).send("User already registered");
 

@@ -61,7 +61,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
     profId: req.params.id,
     user_id: req.user._id,
   });
-
+ 
   res.send("Succesfully updated");
 });
 
