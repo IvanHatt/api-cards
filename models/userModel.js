@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const avatarImg = "public/uploads/avatar-profile-icon-grey.jpg";
 
 //define Mongoose Schema
 const userSchema = new Schema({
@@ -38,6 +39,7 @@ const userSchema = new Schema({
   favoriteProfs: {
     type: Array,
   },
+  profImage: { type: String, minlength: 11, maxlength: 1024 },
   createdAt: { type: Date, default: Date.now },
 });
 
@@ -61,6 +63,7 @@ function joiValidateUser(user) {
     email: Joi.string().min(6).max(255).required().email(),
     password: Joi.string().min(6).max(1024).required(),
     prof: Joi.boolean().required(),
+    profImage: Joi.allow(null),
   });
 
   return schema.validate(user);
@@ -87,3 +90,4 @@ exports.User = User;
 exports.joiValidateUser = joiValidateUser;
 exports.joiValidateAuth = joiValidateAuth;
 exports.joiValidateFavProf = joiValidateFavProf;
+exports.avatarImg = avatarImg;

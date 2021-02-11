@@ -6,14 +6,12 @@ const {
   Prof,
   joiValidateProf,
   generateProfId,
-  avatarImg,
 } = require("../models/profModel");
 const { authMiddleware } = require("../middleware/authMiddleware");
-const { upload } = require("../helper/upload-config");
 
 //get all profs, even if not connected
 router.get("/all-profs", async (req, res) => {
-  const allProfs = await Prof.find();
+  const allProfs = await Prof.find(); 
   res.send(allProfs);
 });
 
@@ -61,7 +59,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
     profId: req.params.id,
     user_id: req.user._id,
   });
- 
+
   res.send("Succesfully updated");
 });
 
@@ -69,7 +67,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
 router.post(
   "/",
   authMiddleware,
-  upload.single("profImage"),
+
   async (req, res) => {
     const { error } = joiValidateProf(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -81,23 +79,16 @@ router.post(
         profDescription: req.body.profDescription,
         profEmail: req.body.profEmail,
         profPhone: req.body.profPhone,
-        profImage: avatarImg,
         profPrice: req.body.profPrice,
         profId: await generateProfId(Prof),
         user_id: req.user._id,
       };
-      if (req.file) {
-        prof.profImage = req.file.path;
-      }
-
       let profToDB = new Prof(prof);
       await profToDB.save();
       res.send("Saved");
     } catch (error) {
       res.status(500).send("Error");
     }
-
-    // image available at : `http://localhost:3010/api/profs/${prof.profImage}`
   }
 );
 

@@ -5,3 +5,5 @@ requests.http
 node_modules/
 
 public/
+
+config/
