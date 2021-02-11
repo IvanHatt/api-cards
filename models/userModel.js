@@ -46,7 +46,7 @@ const userSchema = new Schema({
 //mongoose create a new method, will be available on every instance of User
 userSchema.method("generateAuthToken", function () {
   const token = jwt.sign(
-    { _id: this._id, prof: this.prof },
+    { _id: this._id, prof: this.prof, profImage: this.profImage },
     config.get("jwtKey")
   );
   return token;
