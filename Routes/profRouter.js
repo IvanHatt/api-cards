@@ -67,7 +67,6 @@ router.put("/:id", authMiddleware, async (req, res) => {
 router.post(
   "/",
   authMiddleware,
-
   async (req, res) => {
     const { error } = joiValidateProf(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -80,6 +79,7 @@ router.post(
         profEmail: req.body.profEmail,
         profPhone: req.body.profPhone,
         profPrice: req.body.profPrice,
+        profImage: req.user.profImage,
         profId: await generateProfId(Prof),
         user_id: req.user._id,
       };

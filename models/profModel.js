@@ -48,6 +48,7 @@ const profSchema = new Schema({
     minlength: 1,
     maxlength: 4,
   },
+  profImage: { type: String, minlength: 11, maxlength: 1024 },
   profId: {
     type: String,
     required: true,
@@ -83,6 +84,7 @@ function joiValidateProf(prof) {
       .max(15)
       .required()
       .regex(/^0[2-9]\d{7,8}$/),
+    profImage: Joi.string().allow(null),
     profPrice: Joi.string().min(1).max(4).required(),
   });
   return schema.validate(prof);
