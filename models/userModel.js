@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const avatarImg = "public/uploads/avatar-profile-icon-grey.jpg";
+const avatarImg = "public/uploads/avatar-placeholder.png";
 
 //define Mongoose Schema
 const userSchema = new Schema({
