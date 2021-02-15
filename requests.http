@@ -1,5 +1,5 @@
 @local = http://localhost:3010 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI1MmRjMDM0OTllZTQ0Y2MyY2JjZGQiLCJwcm9mIjp0cnVlLCJpYXQiOjE2MTMwNTE2MDJ9.1LMgju664Mk1x_zJdAIT88AKLLq5xmlt9cr29b3l9_0
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI1MmRjMDM0OTllZTQ0Y2MyY2JjZGQiLCJwcm9mIjp0cnVlLCJwcm9mSW1hZ2UiOiJwdWJsaWNcXHVwbG9hZHNcXHByb2ZJbWFnZS0xNjEzMDQ5MjgwMzMwLmpwZyIsImlhdCI6MTYxMzM5NjAwNn0.l4IUN8MWYhsnpckKBlg77hhrzbIu351GCHRliIhgxfc
 ### Create users
 POST {{local}}/api/users
 Content-Type: application/json
