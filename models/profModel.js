@@ -58,7 +58,7 @@ const profSchema = new Schema({
   },
   user_id: {
     type: Schema.Types.ObjectId,
-    ref: User, //ver si funciona(si no, hacerlo como en el libro)
+    ref: User,
   },
 });
 
@@ -90,6 +90,7 @@ function joiValidateProf(prof) {
   return schema.validate(prof);
 }
 
+//generate a random number for the card
 async function generateProfId(Prof) {
   while (true) {
     let randomNumber = _.random(1000, 999999);

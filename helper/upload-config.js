@@ -1,6 +1,8 @@
 const path = require("path");
 const multer = require("multer");
 
+/// for file uploading
+// files will be stored in public/uploads
 const storage = multer.diskStorage({
   destination: "public/uploads/",
   filename: function (req, file, cb) {

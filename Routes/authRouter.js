@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const { User, joiValidateAuth } = require("../models/userModel");
 
+///endpoint for signin and create token
 router.post("/", async (req, res) => {
   const { error } = joiValidateAuth(req.body);
   if (error) return res.status(400).send(error.details[0].message);
