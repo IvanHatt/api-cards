@@ -1,5 +1,6 @@
 # api-cards
 
-RESTFUL API for final project course "FullStack Developer"
+RESTFUL API for final project course "FullStack Developer" The teachers Lounge
 
-Ivan Hattemer
+NodeJs
+
